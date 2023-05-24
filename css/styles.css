@@ -4,19 +4,49 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: Poppins-Bold;
+  src: url("../assets/fonts/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: Poppins-BoldItalic;
+  src: url("../assets/fonts/Poppins-BoldItalic.ttf");
+}
+
+@font-face {
+  font-family: Poppins-ExtraBold;
+  src: url("../assets/fonts/Poppins-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: Poppins-ExtraBoldItalic;
+  src: url("../assets/fonts/Poppins-ExtraBoldItalic.ttf");
+}
+
+@font-face {
+  font-family: Poppins-Italic;
+  src: url("../assets/fonts/Poppins-Italic.ttf");
+}
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url("../assets/fonts/Poppins-Regular.ttf");
+}
+
+:root {
+  --bg-color: #f0f0f0;
+  --secondary-bg-color: #ffffff;
+  --submit-btn: #151515;
+  --accent-color: #864cff;
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
 }
 .attribution a {
   color: hsl(228, 45%, 44%);
-}
-
-:root {
-  --bg-color: #f4f3f3;
-  --secondary-bg-color: #ffffff;
-  --submit-btn: #171717;
-  --accent-color: #884ff2;
 }
 
 body {
@@ -27,19 +57,71 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-self: center;
+  display: grid;
+  place-items: center;
 }
 
 #app-wrapper {
   position: relative;
   background: var(--secondary-bg-color);
-  display: flex;
+  /* display: flex; */
+  width: 800px;
   align-self: center;
-  gap: 3rem;
-  padding: 10rem;
+  padding: 4rem 3rem;
   overflow: hidden;
-  border-radius: 0 0 30% 0;
+  border-radius: 25px 25px 30% 25px;
+}
+
+.ageForm {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 150px;
+  padding: 0.5rem 1.5rem;
+  font-size: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Poppins-Bold", sans-serif;
+  margin-bottom: 2rem;
+}
+
+.submit {
+  background: var(--accent-color);
+  border-radius: 100%;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  position: absolute;
+  bottom: -38%;
+  right: 0;
+}
+
+.submit:focus,
+.submit:hover {
+  background: var(--submit-btn);
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 5rem;
+  font-family: "Poppins-ExtraBoldItalic", sans-serif;
+}
+
+#result-years,
+#result-months,
+#result-days {
+  color: var(--accent-color);
 }

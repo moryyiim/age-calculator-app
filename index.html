@@ -15,7 +15,7 @@
   <body>
     <section id="app-container">
       <div id="app-wrapper">
-        <form action="ageForm">
+        <form class="ageForm" action="ageForm">
           <div class="form-group">
             <label for="day"></label>
             <input type="text" id="day" min="1" max="31" required />
@@ -38,7 +38,13 @@
           </div>
         </form>
 
-        <div id="result"></div>
+        <hr />
+
+        <div id="result">
+          <div><span id="result-years">--</span> years</div>
+          <div><span id="result-months">--</span> months</div>
+          <div><span id="result-days">--</span> days</div>
+        </div>
       </div>
     </section>
 
