@@ -11,13 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const monthInput = document.getElementById("month");
     const yearInput = document.getElementById("year");
 
-    const day = parseInt(dayInput.value);
-    const month = parseInt(monthInput.value);
-    const year = parseInt(yearInput.value);
-
     const today = new Date();
-
-    const inputDate = new Date(year, month - 1, day);
 
     // Function to show error message
     const showErrorMessage = (message, inputElement) => {
@@ -66,94 +60,77 @@ document.addEventListener("DOMContentLoaded", () => {
       input.classList.remove("error-input");
     });
 
-    // Day input event listeners
-    dayInput.addEventListener("input", () => {
-      if (dayInput.value === "") {
-        removeErrorMessage(dayInput);
-      } else if (!isNaN(day) && day >= 1 && day <= 31) {
-        removeErrorMessage(dayInput);
-      }
-    });
+    // * VALIDATION
 
-    dayInput.addEventListener("change", () => {
-      if (dayInput.value === "") {
-        removeErrorMessage(dayInput);
-      }
-    });
+    const day = parseInt(dayInput.value);
+    const month = parseInt(monthInput.value);
+    const year = parseInt(yearInput.value);
 
-    // Month input event listeners
-    monthInput.addEventListener("input", () => {
-      if (monthInput.value === "") {
-        removeErrorMessage(monthInput);
-      } else if (!isNaN(month) && month >= 1 && month <= 12) {
-        removeErrorMessage(monthInput);
-      }
-    });
+    const inputDate = new Date(year, month - 1, day);
 
-    monthInput.addEventListener("change", () => {
-      if (monthInput.value === "") {
-        removeErrorMessage(monthInput);
-      }
-    });
+    // Function to check if a year is a leap year
+    function isLeapYear(year) {
+      return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
 
-    // Year input event listeners
-    yearInput.addEventListener("input", () => {
-      if (yearInput.value === "") {
-        removeErrorMessage(yearInput);
-      } else if (!isNaN(year) && year <= today.getFullYear()) {
-        removeErrorMessage(yearInput);
-      }
-    });
-
-    yearInput.addEventListener("change", () => {
-      if (yearInput.value === "") {
-        removeErrorMessage(yearInput);
-      }
-    });
-
+    // Validate day
     if (dayInput.value === "") {
       showErrorMessage("This field is required", dayInput);
-    } else {
-      if (isNaN(day) || day < 1 || day > 31) {
-        showErrorMessage("Must be a valid day", dayInput);
-      } else {
-        removeErrorMessage(dayInput);
+    } else if (isNaN(day) || day < 1 || day > 31) {
+      showErrorMessage("Must be a valid day", dayInput);
+    } else if (
+      (month === 4 || month === 6 || month === 9 || month === 11) &&
+      day > 30
+    ) {
+      showErrorMessage("Must be a valid date", dayInput);
+    } else if (month === 2) {
+      const isLeap = isLeapYear(year);
+      if ((isLeap && day > 29) || (!isLeap && day > 28)) {
+        showErrorMessage("Must be a valid date", dayInput);
       }
+    } else {
+      removeErrorMessage(dayInput);
     }
 
+    // Validate month
     if (monthInput.value === "") {
       showErrorMessage("This field is required", monthInput);
+    } else if (isNaN(month) || month < 1 || month > 12) {
+      showErrorMessage("Must be a valid month", monthInput);
     } else {
-      if (isNaN(month) || month < 1 || month > 12) {
-        showErrorMessage("Must be a valid month", monthInput);
-      } else {
-        removeErrorMessage(monthInput);
-      }
+      removeErrorMessage(monthInput);
     }
 
+    // Validate year
     if (yearInput.value === "") {
       showErrorMessage("This field is required", yearInput);
+    } else if (isNaN(year) || year > today.getFullYear()) {
+      showErrorMessage("Must be in the past", yearInput);
     } else {
-      if (isNaN(year) || year > today.getFullYear()) {
-        showErrorMessage("Must be a valid year", yearInput);
-      } else {
-        removeErrorMessage(yearInput);
-      }
+      removeErrorMessage(yearInput);
     }
 
     if (inputDate > today) {
-      showErrorMessage("Must be a valid date", dayInput);
+      showErrorMessage("The date is invalid", dayInput);
+      removeErrorMessage();
       return; // Stop further execution
     }
 
     const ageInMilliseconds = today - inputDate;
-    const ageDate = new Date(ageInMilliseconds);
-    const years = ageDate.getUTCFullYear() - 1970;
-    const months = ageDate.getUTCMonth();
-    const days = ageDate.getUTCDate() - 1;
+    if (isNaN(ageInMilliseconds)) {
+      // Handle invalid input, clear the result elements
+      resultYear.textContent = "--";
+      resultMonth.textContent = "--";
+      resultDay.textContent = "--";
+    } else {
+      const ageDate = new Date(ageInMilliseconds);
+      const years = ageDate.getUTCFullYear() - 1970;
+      const months = ageDate.getUTCMonth();
+      const days = ageDate.getUTCDate() - 1;
 
-    resultYear.textContent = years;
-    resultMonth.textContent = months;
-    resultDay.textContent = days;
+      resultYear.textContent = years;
+      resultMonth.textContent = months;
+      resultDay.textContent = days;
+    }
   });
 });

@@ -67,9 +67,9 @@ body {
   position: relative;
   background: var(--secondary-bg-color);
   /* display: flex; */
-  width: 800px;
+  max-width: 800px;
   align-self: center;
-  padding: 4rem 3rem;
+  padding: 4rem;
   overflow: hidden;
   border-radius: 25px 25px 30% 25px;
 }
@@ -87,7 +87,7 @@ body {
 label {
   display: block;
   font-weight: bold;
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: "Poppins-Bold", sans-serif;
   text-transform: uppercase;
   color: var(--label-color);
 }
@@ -99,6 +99,7 @@ label {
 .error-message {
   color: var(--error-message);
   font-family: "Poppins-regular", sans-serif;
+  margin-bottom: 2rem;
 }
 
 .error-input {
@@ -108,9 +109,9 @@ label {
 
 input[type="text"] {
   width: 150px;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem;
   font-size: 2rem;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 4px;
   font-family: "Poppins-Bold", sans-serif;
   margin-bottom: 2rem;
@@ -124,8 +125,9 @@ input[type="text"] {
   cursor: pointer;
   transition: 0.4s ease-in-out;
   position: absolute;
-  bottom: -38%;
+  bottom: 0;
   right: 0;
+  transform: translate(30%, 55%);
 }
 
 .submit:focus,
@@ -136,11 +138,31 @@ input[type="text"] {
 .result {
   margin-top: 20px;
   font-size: 5rem;
-  font-family: "Poppins-ExtraBoldItalic", sans-serif;
+  font-family: "Poppins-BoldItalic", sans-serif;
 }
 
 #result-year,
 #result-month,
 #result-day {
   color: var(--accent-color);
+}
+
+@media screen and (max-width: 768px) {
+  #app-wrapper {
+    padding: 2rem 1rem;
+    margin: 8rem 2rem;
+  }
+
+  .ageForm {
+    gap: 0.5rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    font-size: 2rem;
+  }
+
+  .result {
+    font-size: 4rem;
+  }
 }
