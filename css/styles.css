@@ -92,9 +92,18 @@ label {
   color: var(--label-color);
 }
 
+.error-label {
+  color: var(--error-message);
+}
+
 .error-message {
   color: var(--error-message);
   font-family: "Poppins-regular", sans-serif;
+}
+
+.error-input {
+  color: var(--error-message);
+  border-color: var(--error-message);
 }
 
 input[type="text"] {

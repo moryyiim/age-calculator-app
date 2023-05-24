@@ -27,40 +27,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const formGroup = inputElement.closest(".form-group");
       formGroup.appendChild(errorElement);
+
+      //   Label error
+      const label = formGroup.querySelector("label");
+      label.classList.add("error-label");
+
+      //   input error
+      const input = formGroup.querySelector("input");
+      input.classList.add("error-input");
     };
 
-    // Remove existing error messages
+    // Remove existing error messages and reset label and input errors
     const errorMessages = ageForm.querySelectorAll(".error-message");
     errorMessages.forEach((errorMessage) => {
+      const inputElement = errorMessage.parentNode.querySelector("input");
+      const formGroup = inputElement.closest(".form-group");
+      const label = formGroup.querySelector("label");
+      const input = formGroup.querySelector("input");
+
       errorMessage.remove();
+
+      label.classList.remove("error-label");
+      input.classList.remove("error-input");
     });
 
-    // Validations
-    if (day === "" && month === "" && year === "") {
-      showErrorMessage("Must be a valid date", dayInput);
+    if (dayInput.value === "") {
+      showErrorMessage("This field is required", dayInput);
     } else {
-      if (day !== "") {
-        if (isNaN(day) || day < 1 || day > 31) {
-          showErrorMessage("Must be a valid day", dayInput);
-        }
+      if (isNaN(day) || day < 1 || day > 31) {
+        showErrorMessage("Must be a valid day", dayInput);
       }
+    }
 
-      if (month !== "") {
-        if (isNaN(month) || month < 1 || month > 12) {
-          showErrorMessage("Must be a valid month", monthInput);
-        }
+    if (monthInput.value === "") {
+      showErrorMessage("This field is required", monthInput);
+    } else {
+      if (isNaN(month) || month < 1 || month > 12) {
+        showErrorMessage("Must be a valid month", monthInput);
       }
+    }
 
-      if (year !== "") {
-        if (isNaN(year) || year > today.getFullYear()) {
-          showErrorMessage("Must be a valid year", yearInput);
-          return;
-        }
+    if (yearInput.value === "") {
+      showErrorMessage("This field is required", yearInput);
+    } else {
+      if (isNaN(year) || year > today.getFullYear()) {
+        showErrorMessage("Must be a valid year", yearInput);
       }
     }
 
     if (inputDate > today) {
-      showErrorMessage("Invalid date", dayInput);
+      showErrorMessage("Must be a valid date", dayInput);
+      return; // Stop further execution
     }
 
     const ageInMilliseconds = today - inputDate;
