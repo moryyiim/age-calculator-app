@@ -13,38 +13,50 @@
     <title>Frontend Mentor | Age calculator app</title>
   </head>
   <body>
-    <section id="app-container">
-      <div id="app-wrapper">
+    <section class="app-container">
+      <div class="app-wrapper">
         <form class="ageForm" id="ageForm" action="ageForm">
-          <div class="form-group">
-            <label for="day">Day</label>
-            <input type="text" id="day" min="1" max="31" pattern="[0-9]{1,2}" />
+          <div class="input-container">
+            <div class="form-group">
+              <label for="day">Day</label>
+              <input
+                type="text"
+                id="day"
+                min="1"
+                max="31"
+                pattern="[0-9]{1,2}"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="month">Month</label>
+              <input
+                type="text"
+                id="month"
+                min="1"
+                max="12"
+                pattern="[0-9]{1,2}"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="year">Year</label>
+              <input type="text" id="year" pattern="[0-9]{4}" />
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="month">Month</label>
-            <input
-              type="text"
-              id="month"
-              min="1"
-              max="12"
-              pattern="[0-9]{1,2}"
-            />
-          </div>
+          <div class="btn-container">
+            <div class="form-group">
+              <button class="submit">
+                <img src="./assets/images/icon-arrow.svg" alt="" />
+              </button>
+            </div>
 
-          <div class="form-group">
-            <label for="year">Year</label>
-            <input type="text" id="year" pattern="[0-9]{4}" />
-          </div>
-
-          <div class="form-group">
-            <button class="submit">
-              <img src="./assets/images/icon-arrow.svg" alt="" />
-            </button>
+            <div class="horizontal-rule-container">
+              <hr class="horizontal-rule" />
+            </div>
           </div>
         </form>
-
-        <hr />
 
         <div class="result">
           <div><span id="result-year">--</span> years</div>

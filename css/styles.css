@@ -43,30 +43,22 @@
   --error-message: #d1555f;
 }
 
-.attribution {
-  font-size: 11px;
-  text-align: center;
-}
-.attribution a {
-  color: hsl(228, 45%, 44%);
-}
-
 body {
   background: var(--bg-color);
 }
 
-#app-container {
+.app-container {
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
   display: grid;
   place-items: center;
+  padding: 0 2rem;
 }
 
-#app-wrapper {
-  position: relative;
+.app-wrapper {
   background: var(--secondary-bg-color);
-  /* display: flex; */
+  width: 100%;
   max-width: 800px;
   align-self: center;
   padding: 4rem;
@@ -76,12 +68,13 @@ body {
 
 .ageForm {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
   position: relative;
 }
 
-.form-group {
-  margin-bottom: 20px;
+.input-container {
+  display: flex;
+  gap: 2rem;
 }
 
 label {
@@ -99,7 +92,6 @@ label {
 .error-message {
   color: var(--error-message);
   font-family: "Poppins-regular", sans-serif;
-  margin-bottom: 2rem;
 }
 
 .error-input {
@@ -124,14 +116,11 @@ input[type="text"] {
   padding: 1rem;
   cursor: pointer;
   transition: 0.4s ease-in-out;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  transform: translate(30%, 55%);
 }
 
 .submit:focus,
-.submit:hover {
+.submit:hover,
+.submit:active {
   background: var(--submit-btn);
 }
 
@@ -139,6 +128,7 @@ input[type="text"] {
   margin-top: 20px;
   font-size: 5rem;
   font-family: "Poppins-BoldItalic", sans-serif;
+  line-height: 1.1;
 }
 
 #result-year,
@@ -147,19 +137,48 @@ input[type="text"] {
   color: var(--accent-color);
 }
 
+.btn-container {
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.horizontal-rule-container {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(50%);
+  z-index: -1;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
 @media screen and (max-width: 768px) {
-  #app-wrapper {
+  .app-wrapper {
     padding: 2rem 1rem;
-    margin: 8rem 2rem;
   }
 
-  .ageForm {
-    gap: 0.5rem;
+  .input-container {
+    gap: 1rem;
   }
 
   input[type="text"] {
     width: 100%;
     font-size: 2rem;
+  }
+
+  .btn-container {
+    justify-content: center;
+    margin: 2rem 0;
   }
 
   .result {
