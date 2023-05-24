@@ -1,37 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Frontend Mentor | Age calculator app</title>
+  </head>
+  <body>
+    <section id="app-container">
+      <div id="app-wrapper">
+        <form action="ageForm">
+          <div class="form-group">
+            <label for="day"></label>
+            <input type="text" id="day" min="1" max="31" required />
+          </div>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Age calculator app</title>
+          <div class="form-group">
+            <label for="month"></label>
+            <input type="text" id="month" min="1" max="12" required />
+          </div>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+          <div class="form-group">
+            <label for="year"></label>
+            <input type="text" id="year" required />
+          </div>
 
-  Day
-  DD
+          <div class="form-group">
+            <button class="submit">
+              <img src="./assets/images/icon-arrow.svg" alt="" />
+            </button>
+          </div>
+        </form>
 
-  Month
-  MM
+        <div id="result"></div>
+      </div>
+    </section>
 
-  Year
-  YYYY
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="https://github.com/moryyiim">Mory Yim</a>.
+    </div>
 
-  -- years
-  -- months
-  -- days
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <script src="./javascript/script.js"></script>
+  </body>
 </html>

@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+:root {
+  --bg-color: #f4f3f3;
+  --secondary-bg-color: #ffffff;
+  --submit-btn: #171717;
+  --accent-color: #884ff2;
+}
+
+body {
+  background: var(--bg-color);
+}
+
+#app-container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+}
+
+#app-wrapper {
+  position: relative;
+  background: var(--secondary-bg-color);
+  display: flex;
+  align-self: center;
+  gap: 3rem;
+  padding: 10rem;
+  overflow: hidden;
+  border-radius: 0 0 30% 0;
+}
