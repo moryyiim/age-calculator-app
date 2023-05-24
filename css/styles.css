@@ -114,14 +114,14 @@ input[type="text"] {
   background: var(--submit-btn);
 }
 
-#result {
+.result {
   margin-top: 20px;
   font-size: 5rem;
   font-family: "Poppins-ExtraBoldItalic", sans-serif;
 }
 
-#result-years,
-#result-months,
-#result-days {
+#result-year,
+#result-month,
+#result-day {
   color: var(--accent-color);
 }
