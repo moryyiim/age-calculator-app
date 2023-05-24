@@ -103,7 +103,7 @@ label {
 
 .error-input {
   color: var(--error-message);
-  border-color: var(--error-message);
+  border: 1px solid var(--error-message);
 }
 
 input[type="text"] {

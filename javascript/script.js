@@ -21,34 +21,94 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to show error message
     const showErrorMessage = (message, inputElement) => {
+      const formGroup = inputElement.closest(".form-group");
+
       const errorElement = document.createElement("div");
       errorElement.classList.add("error-message");
       errorElement.textContent = message;
 
-      const formGroup = inputElement.closest(".form-group");
       formGroup.appendChild(errorElement);
 
-      //   Label error
+      // Label error
       const label = formGroup.querySelector("label");
       label.classList.add("error-label");
 
-      //   input error
+      // Input error
       const input = formGroup.querySelector("input");
       input.classList.add("error-input");
     };
 
-    // Remove existing error messages and reset label and input errors
+    // Function to remove error message and error classes
+    const removeErrorMessage = (inputElement) => {
+      const formGroup = inputElement.closest(".form-group");
+
+      // Remove error message
+      const errorElement = formGroup.querySelector(".error-message");
+      if (errorElement) {
+        formGroup.removeChild(errorElement);
+      }
+
+      // Reset label error
+      const label = formGroup.querySelector("label");
+      label.classList.remove("error-label");
+
+      // Reset input error
+      inputElement.classList.remove("error-input");
+    };
+
+    // Remove existing error messages
     const errorMessages = ageForm.querySelectorAll(".error-message");
     errorMessages.forEach((errorMessage) => {
-      const inputElement = errorMessage.parentNode.querySelector("input");
-      const formGroup = inputElement.closest(".form-group");
-      const label = formGroup.querySelector("label");
+      const formGroup = errorMessage.closest(".form-group");
       const input = formGroup.querySelector("input");
 
-      errorMessage.remove();
-
-      label.classList.remove("error-label");
+      formGroup.removeChild(errorMessage);
       input.classList.remove("error-input");
+    });
+
+    // Day input event listeners
+    dayInput.addEventListener("input", () => {
+      if (dayInput.value === "") {
+        removeErrorMessage(dayInput);
+      } else if (!isNaN(day) && day >= 1 && day <= 31) {
+        removeErrorMessage(dayInput);
+      }
+    });
+
+    dayInput.addEventListener("change", () => {
+      if (dayInput.value === "") {
+        removeErrorMessage(dayInput);
+      }
+    });
+
+    // Month input event listeners
+    monthInput.addEventListener("input", () => {
+      if (monthInput.value === "") {
+        removeErrorMessage(monthInput);
+      } else if (!isNaN(month) && month >= 1 && month <= 12) {
+        removeErrorMessage(monthInput);
+      }
+    });
+
+    monthInput.addEventListener("change", () => {
+      if (monthInput.value === "") {
+        removeErrorMessage(monthInput);
+      }
+    });
+
+    // Year input event listeners
+    yearInput.addEventListener("input", () => {
+      if (yearInput.value === "") {
+        removeErrorMessage(yearInput);
+      } else if (!isNaN(year) && year <= today.getFullYear()) {
+        removeErrorMessage(yearInput);
+      }
+    });
+
+    yearInput.addEventListener("change", () => {
+      if (yearInput.value === "") {
+        removeErrorMessage(yearInput);
+      }
     });
 
     if (dayInput.value === "") {
@@ -56,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       if (isNaN(day) || day < 1 || day > 31) {
         showErrorMessage("Must be a valid day", dayInput);
+      } else {
+        removeErrorMessage(dayInput);
       }
     }
 
@@ -64,6 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       if (isNaN(month) || month < 1 || month > 12) {
         showErrorMessage("Must be a valid month", monthInput);
+      } else {
+        removeErrorMessage(monthInput);
       }
     }
 
@@ -72,6 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       if (isNaN(year) || year > today.getFullYear()) {
         showErrorMessage("Must be a valid year", yearInput);
+      } else {
+        removeErrorMessage(yearInput);
       }
     }
 
