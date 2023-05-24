@@ -38,7 +38,9 @@
   --bg-color: #f0f0f0;
   --secondary-bg-color: #ffffff;
   --submit-btn: #151515;
+  --label-color: #7a7a7a;
   --accent-color: #864cff;
+  --error-message: #d1555f;
 }
 
 .attribution {
@@ -85,6 +87,14 @@ body {
 label {
   display: block;
   font-weight: bold;
+  font-family: "Poppins-Regular", sans-serif;
+  text-transform: uppercase;
+  color: var(--label-color);
+}
+
+.error-message {
+  color: var(--error-message);
+  font-family: "Poppins-regular", sans-serif;
 }
 
 input[type="text"] {

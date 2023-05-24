@@ -7,35 +7,60 @@ document.addEventListener("DOMContentLoaded", () => {
   ageForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const day = parseInt(document.getElementById("day").value);
-    const month = parseInt(document.getElementById("month").value);
-    const year = parseInt(document.getElementById("year").value);
+    const dayInput = document.getElementById("day");
+    const monthInput = document.getElementById("month");
+    const yearInput = document.getElementById("year");
+
+    const day = parseInt(dayInput.value);
+    const month = parseInt(monthInput.value);
+    const year = parseInt(yearInput.value);
 
     const today = new Date();
 
     const inputDate = new Date(year, month - 1, day);
 
-    //   validations
+    // Function to show error message
+    const showErrorMessage = (message, inputElement) => {
+      const errorElement = document.createElement("div");
+      errorElement.classList.add("error-message");
+      errorElement.textContent = message;
 
-    if (isNaN(day) || isNaN(month) || isNaN(year)) {
-      showErrorMessage("Must be a valid date ");
-    }
+      const formGroup = inputElement.closest(".form-group");
+      formGroup.appendChild(errorElement);
+    };
 
-    if (day < 1 || day > 31) {
-      showErrorMessage("Day must be between 1 and 31");
-    }
+    // Remove existing error messages
+    const errorMessages = ageForm.querySelectorAll(".error-message");
+    errorMessages.forEach((errorMessage) => {
+      errorMessage.remove();
+    });
 
-    if (month < 1 || month > 12) {
-      showErrorMessage("Month must be between 1 and 12");
-    }
+    // Validations
+    if (day === "" && month === "" && year === "") {
+      showErrorMessage("Must be a valid date", dayInput);
+    } else {
+      if (day !== "") {
+        if (isNaN(day) || day < 1 || day > 31) {
+          showErrorMessage("Must be a valid day", dayInput);
+        }
+      }
 
-    if (year > today.getFullYear()) {
-      showErrorMessage("Year cannot be in the future");
-      return;
+      if (month !== "") {
+        if (isNaN(month) || month < 1 || month > 12) {
+          showErrorMessage("Must be a valid month", monthInput);
+        }
+      }
+
+      if (year !== "") {
+        if (isNaN(year) || year > today.getFullYear()) {
+          showErrorMessage("Must be a valid year", yearInput);
+          return;
+        }
+      }
     }
 
     if (inputDate > today) {
-      showErrorMessage("Invalid date");
+      showErrorMessage("Invalid date", dayInput);
     }
 
     const ageInMilliseconds = today - inputDate;
