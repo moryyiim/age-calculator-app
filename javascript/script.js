@@ -116,14 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return; // Stop further execution
     }
 
-    // Does not render the age if it is a leap year
-
-    if (isLeapYear(year)) {
-      resultYear.textContent = "--";
-      resultMonth.textContent = "--";
-      resultDay.textContent = "--";
-      return; // Stop further execution
-    }
+    // ...
 
     const ageInMilliseconds = today - inputDate;
     if (isNaN(ageInMilliseconds)) {
@@ -137,7 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const months = ageDate.getUTCMonth();
       const days = ageDate.getUTCDate() - 1;
 
-      if (ageDate.getMonth() === month - 1 && ageDate.getDate() === day) {
+      const inputYear = inputDate.getUTCFullYear();
+      const inputMonth = inputDate.getUTCMonth();
+      const inputDay = inputDate.getUTCDate();
+
+      if (inputYear === year && inputMonth === month - 1 && inputDay === day) {
         resultYear.textContent = years;
         resultMonth.textContent = months;
         resultDay.textContent = days;
